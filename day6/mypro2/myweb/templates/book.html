@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<body>
+
+    <h1>Book Form</h1>
+
+    <form action="" method = 'POST'>{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="submit"/>
+
+    </form>
+    <a href="/">Go to Homepage</a>
+</body>
+</html>
