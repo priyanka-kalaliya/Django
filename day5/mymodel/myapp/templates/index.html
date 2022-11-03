@@ -1,0 +1,22 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1>
+    Display data from Database
+</h1>
+{% for i in info %}
+
+    Title: {{i.title}}<br>
+    Created by: {{i.Author}}<br>
+    Text:{{i.text}}<br>
+
+<a href="{% url 'delete' i.id %}">delete</a><br><br>
+<hr>
+{% endfor %}
+
+<a href="{% url 'formdemo' %}">Click here to add file</a><br><br><br>
+
+</body>
+</html>
