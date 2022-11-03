@@ -1,0 +1,30 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1>
+    Display data from Database
+</h1>
+<!--{% for i in info %}-->
+<!--    id:{{i.id}}<br>-->
+<!--    {{i.tittle}}<br>-->
+<!--    {{i.text}}<br>-->
+<!--    {{i.email}}<br><br><br>-->
+
+<!--{% endfor %}-->
+<!--<hr>-->
+{% for i in info %}
+    id: {{i.id}}<br>
+    name: {{i.name}}<br>
+    address: {{i.address}}<br>
+    marks: {{i.marks}}<br><br>
+
+<a href="{% url 'delete' i.id %}">delete</a><br><br>
+{% endfor %}
+<hr>
+
+<a href="{% url 'formdemo' %}">Click here to add file</a><br><br><br>
+
+</body>
+</html>
