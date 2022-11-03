@@ -1,0 +1,104 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Login Page </title>  
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  /* background-color: pink;   */
+}  
+button {   
+       /* background-color: #4CAF50;    */
+       width: 100%;  
+        /* color: black;   */
+        background-color: black;
+        border-radius: 200px;
+        color: white ;
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1; 
+        width: 550px;  
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+       opacity: 0.7;   
+       transition-duration: 0.9s;
+       color: antiquewhite;
+       background-color: rgb(53, 5, 5);
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+        width: 500px;
+    }   
+</style>   
+<link href="../static/css/styles.css" rel="stylesheet" />
+</head>    
+<body>    
+    <center> 
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+
+                {% if request.user.is_authenticated %}
+                <a class="navbar-brand" href="#!">Hello {{request.user.first_name}}..!</a>
+                {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'loginapp:logout' %}">Log Out</a></li>
+                        {%  else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'loginapp:login' %}">Log In</a></li>
+                        {% endif %}
+
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>               
+                        <li class="nav-item"><a class="nav-link" href="{% url 'add_new_post' %}">Create Post</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+                    <!-- <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p> -->
+                </div>
+            </div>
+        </header>
+    <h1>Login Form </h1>   
+    <form action="{% url 'loginapp:userauth' %}" method="post">{% csrf_token %}  
+        <div class="container">   
+            <label>Username : </label>   
+            <input type="text" placeholder="Enter Username" name="username" required>  <br><br>
+            <label>Password : </label>   
+            <input type="password" placeholder="Enter Password" name="password" required>  <br><br>
+            <button type="submit">Login</button>    
+        </div>   
+    </form> 
+    <a href="{% url 'loginapp:register' %}">Click here for registration</a>
+    </center>     
+</body>     
+</html>  
